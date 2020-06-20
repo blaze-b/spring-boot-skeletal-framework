@@ -10,15 +10,15 @@
 
 - API for creating the employee group </br>
 
-POST /api/employee/management/group/create</br>
-Host: localhost:8081</br>
-Content-Type: application/json</br>
-Request Body</br>
-{</br>
-  "employeeGroups": [</br>
-    "Group A",</br>
-    "Group B",</br>
-    "Group C",</br>
-    "Group D"</br>
-  ]</br>
-}</br>
+&nbsp;&nbsp;POST /api/employee/management/group/create</br>
+&nbsp;&nbsp;Host: localhost:8081</br>
+&nbsp;&nbsp;Content-Type: application/json</br>
+&nbsp;&nbsp;Request Body</br>
+&nbsp;&nbsp;{</br>
+&nbsp;&nbsp;&nbsp;"employeeGroups": [</br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Group A",</br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Group B",</br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Group C",</br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Group D"</br>
+&nbsp;&nbsp;&nbsp;]</br>
+&nbsp;&nbsp;}</br>
