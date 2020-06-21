@@ -11,6 +11,7 @@ import com.org.projectname.integration.repository.EmployeeGroupMasterRepo;
 import com.org.projectname.integration.repository.EmployeeMasterRepo;
 import com.org.projectname.integration.repository.EmployeeRoleMasterRepo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.util.CollectionUtils;
 
@@ -34,6 +35,7 @@ public class EmployeeManagementService {
         this.employeeRoleMasterRepo = employeeRoleMasterRepo;
     }
 
+    @Cacheable(value = "allEmployeeDetailsCache")
     public EmployeeDetailsDto getAllEmployeeDetails() {
         log.info("Inside the method to get all the employee details from the backend");
         List<EmployeeMaster> employeeMasters = employeeMasterRepo
