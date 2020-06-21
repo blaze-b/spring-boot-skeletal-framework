@@ -10,7 +10,7 @@
         <relativePath/>
         <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.org.projectname</groupId>
+    <groupId>com.org.department</groupId>
     <artifactId>spring-boot-skeletal-framework</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-skeletal-framework</name>
