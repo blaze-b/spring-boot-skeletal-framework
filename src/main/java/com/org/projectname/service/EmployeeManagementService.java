@@ -3,6 +3,7 @@ package com.org.projectname.service;
 import com.org.projectname.domain.EmployeeGroupMaster;
 import com.org.projectname.domain.EmployeeMaster;
 import com.org.projectname.domain.EmployeeRoleMaster;
+import com.org.projectname.integration.dto.EmployeeDetailsDto;
 import com.org.projectname.integration.dto.EmployeeDto;
 import com.org.projectname.integration.errorhandler.exception.DuplicateValueException;
 import com.org.projectname.integration.errorhandler.exception.ResourceNotFoundException;
@@ -10,11 +11,14 @@ import com.org.projectname.integration.repository.EmployeeGroupMasterRepo;
 import com.org.projectname.integration.repository.EmployeeMasterRepo;
 import com.org.projectname.integration.repository.EmployeeRoleMasterRepo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import static org.springframework.data.domain.Sort.Direction.ASC;
 
 @Slf4j
 public class EmployeeManagementService {
@@ -28,6 +32,13 @@ public class EmployeeManagementService {
         this.employeeGroupMasterRepo = employeeGroupMasterRepo;
         this.employeeMasterRepo = employeeMasterRepo;
         this.employeeRoleMasterRepo = employeeRoleMasterRepo;
+    }
+
+    public EmployeeDetailsDto getAllEmployeeDetails() {
+        log.info("Inside the method to get all the employee details from the backend");
+        List<EmployeeMaster> employeeMasters = employeeMasterRepo
+                .findAll(Sort.by(ASC, "employeeId"));
+        return new EmployeeDetailsDto(employeeMasters);
     }
 
     public void createEmployeeGroup(List<String> employeeGroups) {

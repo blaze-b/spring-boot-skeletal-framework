@@ -45,14 +45,19 @@
 &nbsp;&nbsp;Content-Type: application/json</br>
 &nbsp;&nbsp;
 &nbsp;&nbsp;{</br>
-&nbsp;&nbsp;&nbsp;"dateOfBirth": "2020-06-21",</br>
+&nbsp;&nbsp;&nbsp;"dateOfBirth": "YYYY-MM-DD",</br>
 &nbsp;&nbsp;&nbsp;"employeeGroups": [</br>
 &nbsp;&nbsp;&nbsp;&nbsp;"Group A",</br>
 &nbsp;&nbsp;&nbsp;&nbsp;"Group B"</br>
 &nbsp;&nbsp;&nbsp;],</br>
-&nbsp;&nbsp;&nbsp;"employeeRole": "Senior Sofware Engineer",</br>
-&nbsp;&nbsp;&nbsp;"firstName": "Brian",</br>
-&nbsp;&nbsp;&nbsp;"lastName": "Blaze",</br>
-&nbsp;&nbsp;&nbsp;"organizationName": "UST-Global",</br>
+&nbsp;&nbsp;&nbsp;"employeeRole": "Senior Software Engineer",</br>
+&nbsp;&nbsp;&nbsp;"firstName": "Bob",</br>
+&nbsp;&nbsp;&nbsp;"lastName": "Marley",</br>
+&nbsp;&nbsp;&nbsp;"organizationName": "XXXXXX",</br>
 &nbsp;&nbsp;&nbsp;"target": 20</br>
 &nbsp;&nbsp;}</br>
+
+- Api to get all the employee details
+
+&nbsp;&nbsp;GET /api/employee/management/employees </br>
+&nbsp;&nbsp;Host: localhost:8081

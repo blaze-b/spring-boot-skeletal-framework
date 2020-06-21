@@ -1,5 +1,6 @@
 package com.org.projectname.integration.controller;
 
+import com.org.projectname.integration.dto.EmployeeDetailsDto;
 import com.org.projectname.integration.dto.EmployeeDto;
 import com.org.projectname.integration.dto.EmployeeGroupDto;
 import com.org.projectname.integration.dto.EmployeeRoleDto;
@@ -27,6 +28,12 @@ public class EmployeeManagementController {
     @Autowired
     public EmployeeManagementController(EmployeeManagementService employeeManagementService) {
         this.employeeManagementService = employeeManagementService;
+    }
+
+    @ApiOperation(value = "Get all the employee details in the system", response = EmployeeDetailsDto.class)
+    @GetMapping("employees")
+    public EmployeeDetailsDto getEmployeeDetails(){
+        return employeeManagementService.getAllEmployeeDetails();
     }
 
     @ApiOperation(value = "Api to create employee group details in the system")
