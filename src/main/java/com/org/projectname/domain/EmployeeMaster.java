@@ -31,6 +31,9 @@ public class EmployeeMaster {
     @Column(name = "LAST_NAME")
     private String lastName;
 
+    @Column(name = "ORGANIZATION")
+    private String organization;
+
     @Column(name = "DATE_OF_BIRTH")
     private LocalDate dateOfBirth;
 

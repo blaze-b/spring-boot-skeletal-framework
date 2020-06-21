@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,7 +13,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeDto {
-    private String employeeName;
+    @NotNull
+    private String firstName;
+    @NotNull
+    private String lastName;
+    @NotNull
+    private String organizationName;
     @DateTimeFormat(pattern = "MM/DD/YYYY")
     private LocalDate dateOfBirth;
     private Integer target;

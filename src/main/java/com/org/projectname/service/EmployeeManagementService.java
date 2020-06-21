@@ -1,15 +1,20 @@
 package com.org.projectname.service;
 
 import com.org.projectname.domain.EmployeeGroupMaster;
+import com.org.projectname.domain.EmployeeMaster;
+import com.org.projectname.domain.EmployeeRoleMaster;
 import com.org.projectname.integration.dto.EmployeeDto;
 import com.org.projectname.integration.errorhandler.exception.DuplicateValueException;
+import com.org.projectname.integration.errorhandler.exception.ResourceNotFoundException;
 import com.org.projectname.integration.repository.EmployeeGroupMasterRepo;
 import com.org.projectname.integration.repository.EmployeeMasterRepo;
 import com.org.projectname.integration.repository.EmployeeRoleMasterRepo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 public class EmployeeManagementService {
@@ -28,7 +33,8 @@ public class EmployeeManagementService {
     public void createEmployeeGroup(List<String> employeeGroups) {
         log.info("Inside the method to create the employee group details in the system");
         employeeGroups.forEach(employeeGroup -> {
-            Optional<EmployeeGroupMaster> employeeGroupMasterFromDb = employeeGroupMasterRepo.findByGroupName(employeeGroup);
+            Optional<EmployeeGroupMaster> employeeGroupMasterFromDb = employeeGroupMasterRepo
+                    .findByGroupNameIgnoreCase(employeeGroup);
             if (!employeeGroupMasterFromDb.isPresent()) {
                 EmployeeGroupMaster employeeGroupMaster = new EmployeeGroupMaster();
                 employeeGroupMaster.setGroupName(employeeGroup);
@@ -39,7 +45,42 @@ public class EmployeeManagementService {
         });
     }
 
-    public void createEmployee(EmployeeDto employeeDto) {
+    public void createEmployeeRole(List<String> employeeRoles) {
+        log.info("Inside the method to create the employee role details in the system");
+        employeeRoles.forEach(employeeRole -> {
+            Optional<EmployeeRoleMaster> employeeRoleMasterFromDb = employeeRoleMasterRepo
+                    .findByRoleNameIgnoreCase(employeeRole);
+            if (!employeeRoleMasterFromDb.isPresent()) {
+                EmployeeRoleMaster employeeRoleMaster = new EmployeeRoleMaster();
+                employeeRoleMaster.setRoleName(employeeRole);
+                employeeRoleMasterRepo.save(employeeRoleMaster);
+            } else {
+                throw new DuplicateValueException("The role name " + employeeRole + " already exists in the system");
+            }
+        });
+    }
+
+    public void createEmployeeDetails(EmployeeDto employeeDto) {
         log.info("Inside the method to create the employee details in the system");
+        EmployeeMaster employeeMaster = new EmployeeMaster();
+        employeeMaster.setFirstName(employeeDto.getFirstName());
+        employeeMaster.setLastName(employeeDto.getLastName());
+        employeeMaster.setOrganization(employeeDto.getOrganizationName());
+        employeeMaster.setDateOfBirth(employeeDto.getDateOfBirth());
+        employeeMaster.setTarget(employeeDto.getTarget());
+        EmployeeRoleMaster employeeRoleMasterFromDb = employeeRoleMasterRepo
+                .findByRoleNameIgnoreCase(employeeDto.getEmployeeRole())
+                .orElseThrow(() -> new ResourceNotFoundException("No Employee role details found in the system"));
+        log.info("Employee role details from db = {}", employeeRoleMasterFromDb);
+        employeeMaster.setEmployeeRoleMaster(employeeRoleMasterFromDb);
+        Set<EmployeeGroupMaster> employeeGroup = employeeGroupMasterRepo
+                .findByGroupNameIgnoreCaseIn(employeeDto.getEmployeeGroups());
+        log.info("Employee group details from db = {}", employeeGroup);
+        if (!CollectionUtils.isEmpty(employeeGroup)) {
+            employeeMaster.setEmployeeGroupMasters(employeeGroup);
+        } else {
+            throw new ResourceNotFoundException("No Employee group details found in the system");
+        }
+        employeeMasterRepo.save(employeeMaster);
     }
 }

@@ -22,3 +22,37 @@
 &nbsp;&nbsp;&nbsp;&nbsp;"Group D"</br>
 &nbsp;&nbsp;&nbsp;]</br>
 &nbsp;&nbsp;}</br>
+
+- Api for creating the employee role </br>
+
+&nbsp;&nbsp;POST /api/employee/management/role/create</br>
+&nbsp;&nbsp;Host: localhost:8081</br>
+&nbsp;&nbsp;Content-Type: application/json</br>
+&nbsp;&nbsp;Request body:</br>
+&nbsp;&nbsp;{</br>
+&nbsp;&nbsp;&nbsp;"employeeRoles": [</br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Project Manager",</br>
+&nbsp;&nbsp;&nbsp;&nbsp;"System Analyst",</br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Senior Sofware Engineer",</br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Software Engineer"</br>
+&nbsp;&nbsp;&nbsp;]</br>
+&nbsp;&nbsp;}</br>
+
+- Api to create the employee details </br>
+
+&nbsp;&nbsp;POST /api/employee/management/employee/create</br>
+&nbsp;&nbsp;Host: localhost:8081</br>
+&nbsp;&nbsp;Content-Type: application/json</br>
+&nbsp;&nbsp;
+&nbsp;&nbsp;{</br>
+&nbsp;&nbsp;&nbsp;"dateOfBirth": "2020-06-21",</br>
+&nbsp;&nbsp;&nbsp;"employeeGroups": [</br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Group A",</br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Group B"</br>
+&nbsp;&nbsp;&nbsp;],</br>
+&nbsp;&nbsp;&nbsp;"employeeRole": "Senior Sofware Engineer",</br>
+&nbsp;&nbsp;&nbsp;"firstName": "Brian",</br>
+&nbsp;&nbsp;&nbsp;"lastName": "Blaze",</br>
+&nbsp;&nbsp;&nbsp;"organizationName": "UST-Global",</br>
+&nbsp;&nbsp;&nbsp;"target": 20</br>
+&nbsp;&nbsp;}</br>
