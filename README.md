@@ -6,7 +6,7 @@
 - Sample Spring Data JPA repository
 - Postgres SQL is the backend DB connection used for testing
 
-# Api details to test
+## Api details to test
 
 - Swagger UI details </br>
 ![alt text](https://github.com/brianblaze14/spring-boot-skeletal-framework/blob/master/images/Swagger-api.PNG)
